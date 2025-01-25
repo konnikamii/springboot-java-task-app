@@ -1,7 +1,7 @@
 package com.springboot.java.task.app.controller;
 
-import com.springboot.java.task.app.auth.LoginResponse;
 import com.springboot.java.task.app.auth.LoginRequest;
+import com.springboot.java.task.app.auth.LoginResponse;
 import com.springboot.java.task.app.auth.RegisterRequest;
 import com.springboot.java.task.app.service.AuthService;
 import jakarta.validation.constraints.Email;
@@ -29,9 +29,9 @@ public class AuthController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register/")
     public ResponseEntity<String> register(@RequestParam("username") String username,
-                                                  @RequestParam("email") @Email String email,
-                                                  @RequestParam("password") String password) {
-        RegisterRequest req = new RegisterRequest(username,email, password);
+                                           @RequestParam("email") @Email String email,
+                                           @RequestParam("password") String password) {
+        RegisterRequest req = new RegisterRequest(username, email, password);
         authService.register(req);
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }

@@ -44,6 +44,7 @@ public class TaskController {
 
         return response;
     }
+
     // Get task by id
     @GetMapping("/task/{id}")
     public TaskDTO getTaskById(@RequestHeader("Authorization") String token,
@@ -55,6 +56,7 @@ public class TaskController {
         }
         return taskService.convertToDTO(task);
     }
+
     // Create task
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/task/")
@@ -65,6 +67,7 @@ public class TaskController {
         taskService.save(task);
         return "Successfully created task";
     }
+
     // Update task
     @PutMapping("/task/{id}")
     public String updateTask(@RequestHeader("Authorization") String token,
@@ -82,6 +85,7 @@ public class TaskController {
         taskService.save(existingTask);
         return "Successfully updated task";
     }
+
     // Delete task
     @DeleteMapping("/task/{id}")
     public String deleteTask(@RequestHeader("Authorization") String token,

@@ -36,6 +36,7 @@ class TaskRepositoryTest {
     Task task5 = Task.builder().title("Task 5").description("Description 5").completed(false).dueDate(LocalDate.now().plusDays(17)).owner(user1).build();
     Task task6 = Task.builder().title("Task 6").description("Description 6").completed(false).dueDate(LocalDate.now().plusDays(37)).owner(user2).build();
     Task task7 = Task.builder().title("Task 7").description("Description 7").completed(false).dueDate(LocalDate.now().plusDays(47)).owner(user1).build();
+
     @BeforeEach
     public void setUp() {
         taskRepository.deleteAll();
@@ -69,6 +70,7 @@ class TaskRepositoryTest {
         Assertions.assertThat(foundTask).isNotNull();
         Assertions.assertThat(foundTask.getId()).isEqualTo(savedTask.getId());
     }
+
     @Test
     public void TaskRepository_GetAll() {
         List<Task> tasks = List.of(task2, task3, task4, task5, task7);
@@ -89,6 +91,7 @@ class TaskRepositoryTest {
         Assertions.assertThat(foundTasks).isNotNull();
         Assertions.assertThat(foundTasks.size()).isEqualTo(2);
     }
+
     @Test
     public void TaskRepository_Update() {
         Task savedTask = taskRepository.save(task5);
@@ -102,11 +105,11 @@ class TaskRepositoryTest {
 
     @Test
     public void TaskRepository_FindByOwnerId_Test() {
-        List<Task> savedTasks = taskRepository.saveAll(List.of(task1,task2, task3, task4, task5, task6, task7));
+        List<Task> savedTasks = taskRepository.saveAll(List.of(task1, task2, task3, task4, task5, task6, task7));
         List<Task> savedTask = taskRepository.findByOwnerId(user1.getId());
 
         Assertions.assertThat(savedTask).isNotNull();
         Assertions.assertThat(savedTask.size()).isEqualTo(4);
 
-        }
+    }
 }

@@ -39,7 +39,7 @@ public class UserController {
     @PutMapping("/change-password/")
     public String changePassword(@RequestHeader("Authorization") String token,
                                  @RequestParam String old_password,
-                                 @RequestParam String new_password){
+                                 @RequestParam String new_password) {
         String username = jwtService.extractUsername(token.substring(7));
         userService.changePassword(username, old_password, new_password);
 

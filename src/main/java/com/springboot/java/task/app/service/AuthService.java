@@ -1,7 +1,7 @@
 package com.springboot.java.task.app.service;
 
-import com.springboot.java.task.app.auth.LoginResponse;
 import com.springboot.java.task.app.auth.LoginRequest;
+import com.springboot.java.task.app.auth.LoginResponse;
 import com.springboot.java.task.app.auth.RegisterRequest;
 import com.springboot.java.task.app.model.Role;
 import com.springboot.java.task.app.model.User;
@@ -71,6 +71,7 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username must contain only letters, numbers and underscores");
         }
     }
+
     public void validatePassword(String password) {
         if (password.length() < 8) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password must be at least 8 characters long");

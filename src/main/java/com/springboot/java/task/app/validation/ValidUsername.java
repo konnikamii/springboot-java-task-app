@@ -19,7 +19,9 @@ import java.lang.annotation.Target;
 @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username should only contain letters and numbers!")
 public @interface ValidUsername {
     String message() default "Invalid username";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
 

@@ -41,7 +41,7 @@ public class DatabaseConfig {
             Task task6 = Task.builder().title("Task 6").description("Description 6").completed(false).dueDate(LocalDate.now().plusDays(37)).owner(user2).build();
             Task task7 = Task.builder().title("Task 7").description("Description 7").completed(false).dueDate(LocalDate.now().plusDays(47)).owner(user1).build();
 
-            taskRepository.saveAll(List.of(task1, task2,task3,  task4, task5, task6, task7));
+            taskRepository.saveAll(List.of(task1, task2, task3, task4, task5, task6, task7));
         };
     }
 }

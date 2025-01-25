@@ -1,9 +1,9 @@
 package com.springboot.java.task.app.controller;
 
-import com.springboot.java.task.app.dto.TaskDTO;
-import com.springboot.java.task.app.model.Task;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.springboot.java.task.app.dto.TaskDTO;
+import com.springboot.java.task.app.model.Task;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -20,9 +20,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest

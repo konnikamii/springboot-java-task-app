@@ -1,9 +1,9 @@
 package com.springboot.java.task.app.controller;
 
-import com.springboot.java.task.app.dto.UserDTO;
-import com.springboot.java.task.app.dto.UserTasksDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.springboot.java.task.app.dto.UserDTO;
+import com.springboot.java.task.app.dto.UserTasksDTO;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -60,6 +60,7 @@ class UserControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andReturn();
     }
+
     @Test
     @Order(2)
     public void UserControllerIntegration_GetAllUsers() throws Exception {
@@ -86,6 +87,7 @@ class UserControllerIntegrationTest {
         Assertions.assertThat(users[0].getUsername()).isEqualTo("username1");
         Assertions.assertThat(users[1].getUsername()).isEqualTo("username2");
     }
+
     @Test
     @Order(3)
     public void UserControllerIntegration_GetAllUsersWithTasks() throws Exception {
@@ -112,6 +114,7 @@ class UserControllerIntegrationTest {
         Assertions.assertThat(users[0].getUsername()).isEqualTo("username1");
         Assertions.assertThat(users[1].getUsername()).isEqualTo("username2");
     }
+
     @Test
     @Order(4)
     public void UserControllerIntegration_ChangePassword() throws Exception {

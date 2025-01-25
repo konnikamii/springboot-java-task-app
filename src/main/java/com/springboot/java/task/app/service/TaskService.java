@@ -24,6 +24,7 @@ public class TaskService {
     public TaskDTO convertToDTO(Task task) {
         return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getCompleted(), task.getDueDate(), task.getUpdatedAt(), task.getCreatedAt());
     }
+
     public List<TaskDTO> convertToDTOList(List<Task> tasks) {
         return tasks.stream()
                 .map(this::convertToDTO)
@@ -34,6 +35,7 @@ public class TaskService {
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task not found"));
     }
+
     public List<Task> getAllTasksByOwnerId(Long owner_id) {
         return taskRepository.findByOwnerId(owner_id);
     }
@@ -42,9 +44,11 @@ public class TaskService {
     public TaskDTO getTaskByIdDTO(Long id) {
         return convertToDTO(getTaskById(id));
     }
+
     public List<TaskDTO> getAllTasksByOwnerIdDTO(Long owner_id) {
         return convertToDTOList(getAllTasksByOwnerId(owner_id));
     }
+
     public Page<TaskDTO> getAllTasksByOwnerIdDTO(Long ownerId, Pageable pageable) {
         Page<Task> tasks = taskRepository.findAllByOwnerId(ownerId, pageable);
         return tasks.map(this::convertToDTO);
@@ -54,9 +58,11 @@ public class TaskService {
     public boolean isTaskOwner(Task task, User user) {
         return Objects.equals(task.getOwner().getId(), user.getId());
     }
+
     public void save(Task task) {
         taskRepository.save(task);
     }
+
     public void delete(Long id) {
         if (!taskRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Task not founds");

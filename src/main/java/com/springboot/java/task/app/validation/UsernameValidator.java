@@ -15,25 +15,25 @@ public class UsernameValidator implements ConstraintValidator<ValidUsername, Str
         if (username == null || username.isBlank()) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Please provide a username!")
-                   .addConstraintViolation();
+                    .addConstraintViolation();
             return false;
         }
         if (username.length() < 5) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Username must be longer than 5 characters!")
-                   .addConstraintViolation();
+                    .addConstraintViolation();
             return false;
         }
         if (username.length() > 30) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Username must be shorter than 30 characters!")
-                   .addConstraintViolation();
+                    .addConstraintViolation();
             return false;
         }
         if (!username.matches("^[a-zA-Z0-9]+$")) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Username should only contain letters and numbers!")
-                   .addConstraintViolation();
+                    .addConstraintViolation();
             return false;
         }
         return true;

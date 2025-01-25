@@ -17,7 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,6 +48,7 @@ class TaskServiceTest {
         task2 = Task.builder().id(2L).title("Task 2").description("Description 2").completed(true).dueDate(LocalDate.now()).owner(user1).build();
         task3 = Task.builder().id(3L).title("Task 3").description("Description 3").completed(true).dueDate(null).owner(user1).build();
     }
+
     @Test
     void TaskService_GetTaskById() {
         when(taskRepository.findById(anyLong())).thenReturn(Optional.of(task1));
@@ -63,9 +63,7 @@ class TaskServiceTest {
     void TaskService_GetTaskById_TaskNotFound() {
         when(taskRepository.findById(anyLong())).thenReturn(Optional.empty());
 
-        Assertions.assertThatThrownBy(() -> taskService.getTaskById(1L))
-                .isInstanceOf(ResponseStatusException.class)
-                .hasMessageContaining("Task not found");
+        Assertions.assertThatThrownBy(() -> taskService.getTaskById(1L)).isInstanceOf(ResponseStatusException.class).hasMessageContaining("Task not found");
     }
 
     @Test
@@ -86,12 +84,11 @@ class TaskServiceTest {
         taskService.delete(task1.getId());
         verify(taskRepository).deleteById(task1.getId());
     }
+
     @Test
     void TaskService_DeleteTask_TaskNotFound() {
         when(taskRepository.existsById(task1.getId())).thenReturn(false);
 
-        Assertions.assertThatThrownBy(() -> taskService.delete(task1.getId()))
-                .isInstanceOf(ResponseStatusException.class)
-                .hasMessageContaining("Task not found");
+        Assertions.assertThatThrownBy(() -> taskService.delete(task1.getId())).isInstanceOf(ResponseStatusException.class).hasMessageContaining("Task not found");
     }
 }

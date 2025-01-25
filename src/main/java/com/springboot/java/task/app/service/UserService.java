@@ -30,16 +30,19 @@ public class UserService {
     private UserDTO convertToDTO(User user) {
         return new UserDTO(user.getId(), user.getUsername(), user.getEmail(), user.getRole(), user.getUpdatedAt(), user.getCreatedAt());
     }
+
     private List<UserDTO> convertToDTOList(List<User> users) {
         return users.stream()
                 .map(this::convertToDTO)
                 .collect(java.util.stream.Collectors.toList());
     }
+
     private UserTasksDTO convertToUserTasksDTO(User user) {
         List<Task> tasks = taskService.getAllTasksByOwnerId(user.getId());
         List<TaskDTO> tasksDTO = taskService.convertToDTOList(tasks);
-        return new UserTasksDTO(user.getId(), user.getUsername(), user.getEmail(), user.getRole(), user.getUpdatedAt(), user.getCreatedAt(),tasksDTO);
+        return new UserTasksDTO(user.getId(), user.getUsername(), user.getEmail(), user.getRole(), user.getUpdatedAt(), user.getCreatedAt(), tasksDTO);
     }
+
     private List<UserTasksDTO> convertToUserTasksDTOList(List<User> users) {
         return userRepository.findAll().stream().map(this::convertToUserTasksDTO).collect(java.util.stream.Collectors.toList());
     }
@@ -49,9 +52,11 @@ public class UserService {
         String username = jwtService.extractUsername(token.substring(7));
         return userRepository.findByUsername(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
+
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -60,12 +65,15 @@ public class UserService {
     public UserDTO getUserByTokenDTO(String token) {
         return convertToDTO(getUserByToken(token));
     }
+
     public UserDTO getUserByUsernameDTO(String username) {
         return convertToDTO(getUserByUsername(username));
     }
+
     public List<UserDTO> getAllUsersDTO() {
         return convertToDTOList(userRepository.findAll());
     }
+
     public List<UserTasksDTO> getAllUsersWithTasksDTO() {
         return convertToUserTasksDTOList(userRepository.findAll());
     }
@@ -76,6 +84,7 @@ public class UserService {
         }
         userRepository.deleteById(id);
     }
+
     public void changePassword(String username, String oldPassword, String newPassword) {
         User user = getUserByUsername(username);
         System.out.println(passwordEncoder.encode(oldPassword));
