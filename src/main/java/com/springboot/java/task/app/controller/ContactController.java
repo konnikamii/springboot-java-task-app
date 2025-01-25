@@ -30,7 +30,7 @@ public class ContactController {
         contactService.save(contact);
         // Send email to MailHog
         try {
-            emailService.sendEmail(email, subject, message);
+            emailService.sendEmail(name, email, subject, message);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return "Contact form saved";
