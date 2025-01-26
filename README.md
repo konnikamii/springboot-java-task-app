@@ -1,7 +1,7 @@
 # Springboot Java Task Manager App
 
 <p align="center" style="display: flex; justify-content: center; align-items: center;">
-  <a href="https://fastapi.tiangolo.com/" rel="noopener noreferrer" target="_blank">
+  <a href="https://spring.io/projects/spring-boot" rel="noopener noreferrer" target="_blank">
     <img src="https://images-cdn.openxcell.com/wp-content/uploads/2024/07/25070933/springboot-inner.svg" width="200" alt="Springboot Logo">
   </a>
 </p>
@@ -86,10 +86,10 @@ You could simply use `mvn` if you have it already installed.
 .\mvnw clean package -DskipTests                     # remove the flag if you are connected to the DB
 ``` 
 
-#### 3. Run the project: (if running locally)
+#### 3. Run the project: (only if running locally)
 
 ```bash
-java -jar target/task-manager-0.0.1-SNAPSHOT.jar
+java -jar target/app-0.0.1-SNAPSHOT.jar
 ```
    
 ## Docker Setup
@@ -107,7 +107,7 @@ By default:
 - The **frontend** will be available at [http://localhost:3000](http://localhost:3000)
 - The **backend** will be available at [http://localhost:8080](http://localhost:8080)
 
-Try creating an account and logging in. There db is prepopulated with a few users and tasks.
+Try creating an account and logging in. The database is auto-populated with a few users and tasks.
 
 ---
 
@@ -137,9 +137,9 @@ You need the following:
   Install **PostgreSQL** with its **GUI pgAdmin4** (optional) and create a database matching the name in your `.env` file.
 
     - Default port: `5432`
-    - Ensure the `DATABASE_PORT` from the `.env` file and **PostgreSQL** are on the same port.
+    - Ensure the `POSTGRES_PORT` from the `.env` file and **PostgreSQL** are on the same port.
     - You can use the default `postgres` user and set a new password.
-    - Ensure the host environment variable matches your local DB hostname (e.g., `DATABASE_HOSTNAME=127.0.0.1` or `DATABASE_HOSTNAME=localhost`).
+    - Ensure the host environment variable matches your local DB hostname (e.g., `POSTGRES_HOSTNAME=127.0.0.1` or `POSTGRES_HOSTNAME=localhost`).
 
 - **Mailhog**:  
   Install and configure Mailhog to run on the following ports (or user Docker):
