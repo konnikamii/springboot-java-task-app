@@ -83,7 +83,7 @@ cp .\src\main\resources\.env.example .\src\main\resources\.env
 You could simply use `mvn` if you have it already installed.
 
 ```bash
-.\mvnw clean package                          # use the `--DskipTests` flag if you are not connected to a test DB
+.\mvnw clean package -DskipTests                     # remove the flag if you are connected to the DB
 ``` 
 
 #### 3. Run the project: (if running locally)
